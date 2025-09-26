@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>text-shadow와 box-shadow</title>
+<style>
+  
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+  
+    h1 {
+       color: yellow;
+        text-shadow: 3px 3px 5px dimgray;
+    }
+
+   
+    .container {
+        display: flex; 
+        gap: 20px; 
+    }
+
+  
+    .container a {
+        text-decoration: none; 
+       
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .container img {
+        border: 1px solid #ccc; 
+        width: 400px;
+        display: block; 
+    }
+
+  
+    .container a:hover {
+      
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    }
+</style>
+</head>
+<body>
+
+    <h1>Most Visited Pages</h1>
+   
+   
+
+    <div class="container">
+        <a href="#"><img src="naver.jpg" alt="네이버"></a>
+        <a href="#"><img src="google.jpg" alt="구글"></a>
+        <a href="#"><img src="daum.jpg" alt="다음"></a>
+      
+    </div>
+
+</body>
+</html>
