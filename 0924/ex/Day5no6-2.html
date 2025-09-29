@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>animation</title>
+<style>
+    @keyframes wobble {
+     
+        0% { transform: rotate(0deg); } 
+        25% { transform: rotate(-90deg); } 
+        50% { transform: rotate(0deg); } 
+        75% { transform: rotate(90deg); } 
+        100% { transform: rotate(0deg); } 
+    }
+
+    img {
+       
+        animation-name: wobble;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+    }
+</style>
+</head>
+<body>
+<h3>어지러워요</h3>
+<hr>
+<img src="spongebob.png" width="150">
+</body>
+</html>
