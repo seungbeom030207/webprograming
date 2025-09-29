@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>설문지</title>
+    <style>
+     
+body {
+    font-family: "맑은 고딕", sans-serif;
+}
+
+
+h1 {
+    color: blue;
+    text-align: center;
+    background-color: yellow;
+}
+
+
+p {
+    background-color: lightgoldenrodyellow;
+    padding: 10px;
+    border: 1px solid lightgray;
+}
+
+
+form {
+    background-color: lightpink;
+    padding: 15px;
+}
+
+
+fieldset {
+    margin-bottom: 15px; 
+}
+    </style>
+    <link rel="stylesheet" type="text/css" href="survey4.css">
+</head>
+<body>
+ 
+
+    <h1>설문지</h1>
+    <p>알고리즘 기술에 대한 의견을 듣습니다. 많은 참여 부탁드립니다.</p>
+     <form>
+        <p>
+            <strong>학년</strong>&nbsp;&nbsp;
+            <input type="radio" name="grade" value="1" checked> 1학년
+            <input type="radio" name="grade" value="2"> 2학년
+            <input type="radio" name="grade" value="3"> 3학년
+            <input type="radio" name="grade" value="4"> 4학년
+        </p>
+        <p>
+            <strong>성별</strong>&nbsp;&nbsp;
+            <input type="radio" name="gender" value="male"> 남
+            <input type="radio" name="gender" value="female"> 여
+        </p>
+        <p>
+            <strong>관심 분야</strong>&nbsp;&nbsp;
+            <select name="interest">
+                <option value="mobile">모바일 소프트웨어</option>
+                <option value="web">웹 개발</option>
+                <option value="ai">인공지능</option>
+                <option value="data">게임프로그래밍</option>
+            </select>
+        </p>
+        <p>
+            <strong>진로</strong>&nbsp;&nbsp;
+            <input type="checkbox" value="dev" checked> 개발
+            <input type="checkbox" value="plan"> 기획
+            <input type="checkbox" value="sales"> 영업
+            <input type="checkbox" value="startup"> 창업
+        </p>
+        <p>
+            <strong>남기고 싶은 말</strong><br>
+            <textarea cols="50" rows="5" placeholder="글을 남겨주세요"></textarea>
+        </p>
+    </form>
+</body>
+</html>
