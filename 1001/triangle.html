@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>별 찍기 프로그램</title>
+<!-- <style>
+   
+
+    h2 {
+        border-bottom: 2px solid white;
+        padding-bottom: 5px;
+    }
+    pre {
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        font-size: 1.1em;
+    }
+</style> -->
+</head>
+<body>
+
+<h1>이중 for문으로 별 모양 출력하기</h1>
+
+<script>
+
+    const userInput = prompt("별의 줄 수를 입력하세요.", "7");
+
+  
+    if (userInput !== null && userInput.trim() !== "") {
+        const rows = parseInt(userInput);
+
+        if (!isNaN(rows) && rows > 0) {
+            
+   
+
+       
+            function printPattern(title, pattern) {
+                document.write(`<h3>${title}</h3>`);
+                document.write(`<pre>${pattern}</pre>`);
+            }
+
+        
+            let pattern1 = "";
+            for (let i = 1; i <= rows; i++) {
+                for (let j = 1; j <= i; j++) {
+                    pattern1 += "*";
+                }
+                pattern1 += "\n";
+            }
+            printPattern("1. 왼쪽 정렬 삼각형", pattern1);
+
+        
+            let pattern2 = "";
+            for (let i = 1; i <= rows; i++) {
+                for (let j = 1; j <= rows - i; j++) {
+                    pattern2 += " ";
+                }
+                for (let k = 1; k <= i; k++) {
+                    pattern2 += "*";
+                }
+                pattern2 += "\n";
+            }
+            printPattern("2. 오른쪽 정렬 삼각형", pattern2);
+
+          
+            let pattern3 = "";
+            for (let i = 1; i <= rows; i++) {
+                for (let j = 1; j <= rows - i; j++) {
+                    pattern3 += " ";
+                }
+                for (let k = 1; k <= 2 * i - 1; k++) {
+                    pattern3 += "*";
+                }
+                pattern3 += "\n";
+            }
+            printPattern("3. 피라미드 삼각형", pattern3);
+
+           
+            let pattern4 = "";
+            for (let i = 1; i <= rows; i++) {
+                for (let j = 1; j <= rows - i; j++) {
+                    pattern4 += " ";
+                }
+                for (let k = 1; k <= 2 * i - 1; k++) {
+                    pattern4 += "*";
+                }
+                pattern4 += "\n";
+            }
+            for (let i = rows - 1; i >= 1; i--) {
+                for (let j = 1; j <= rows - i; j++) {
+                    pattern4 += " ";
+                }
+                for (let k = 1; k <= 2 * i - 1; k++) {
+                    pattern4 += "*";
+                }
+                pattern4 += "\n";
+            }
+            printPattern("4. 마름모", pattern4);
+
+        } else {
+            document.write("이상의 올바른 숫자를 입력해야 합니다.");
+        }
+    } else {
+        
+        document.write("입력이 취소되었습니다.");
+    }
+</script>
+
+</body>
+</html>
