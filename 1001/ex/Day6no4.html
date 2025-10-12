@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>월화수목금토일</title>
+</head>
+<body>
+    <script>
+     
+        const day = prompt("월화수목금토일 중에서 입력하세요");
+
+        let workStatus; 
+
+     
+        switch (day) {
+            case '월':
+            case '화':
+            case '수':
+            case '목':
+                workStatus = '출근';
+                break;
+            case '금':
+            case '토':
+            case '일':
+                workStatus = '휴일';
+                break;
+            default:
+               
+                workStatus = null; 
+                break;
+        }
+
+     
+        document.write("<h1>월화수목금토일</h1> <hr>");
+        
+
+        if (workStatus) {
+      
+            let particle;
+            if (day === '월' || day === '목' || day === '금' || day === '일') {
+                particle = '은';
+            } else {
+                particle = '는'; 
+            }
+            
+           
+            document.write(`<p>${day}${particle} ${workStatus}</p>`);
+        } else {
+          
+            document.write("<p>요일을 정확히 입력해주세요.</p>");
+        }
+    </script>
+</body>
+</html>
