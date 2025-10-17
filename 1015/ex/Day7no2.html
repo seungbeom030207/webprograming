@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>정수 5개 입력받아 역순으로 출력</title>
+</head>
+<body>
+
+<h3>정수 5개 입력받아 역순으로 출력</h3>
+<hr>
+
+<script>
+
+    const numbers = [];
+
+
+    for (let i = 0; i < 5; i++) {
+
+        let input = prompt((i + 1) + '번째 정수를 입력하세요');
+        
+
+        numbers.push(parseInt(input));
+    }
+
+ 
+    document.write("<h4>입력된 수의 배열</h4>");
+
+    document.write(numbers.join(' '));
+    document.write("<br><br>"); 
+ 
+    const reversedNumbers = numbers.reverse();
+
+   
+    document.write("<hr><h4>역순으로 재정렬된 배열</h4>");
+    document.write(reversedNumbers.join(' '));
+
+</script>
+
+</body>
+</html>

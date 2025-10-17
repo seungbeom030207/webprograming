@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>문자열 분할</title>
+</head>
+<body>
+
+<h3>문자열 분할</h3>
+<hr>
+
+<script>
+    
+    const inputString = prompt("문자열을 입력하세요 (예: query=java&id=5&who=kitae)");
+
+   
+    if (inputString) {
+      
+        const stringArray = inputString.split('&');
+
+  
+        for (const part of stringArray) {
+     
+            document.write(part + "<br>");
+        }
+    } else {
+      
+        document.write("입력이 취소되었습니다.");
+    }
+</script>
+
+</body>
+</html>
