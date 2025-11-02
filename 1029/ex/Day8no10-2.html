@@ -1,0 +1,19 @@
+<script>
+  function addAnswer(obj, text) {
+   
+    let newP = document.createElement("p");
+    newP.innerHTML = "<strong>" + text + "</strong>";
+    newP.style.color = "blue";
+    newP.style.cursor = "pointer"; 
+
+    newP.onclick = function() {
+      this.remove(); 
+    };
+    
+  
+    let parentDiv = obj.parentElement;
+    
+
+    parentDiv.replaceChild(newP, obj);
+  }
+</script>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>계산기 만들기</title>
+<style>
+  body {
+    text-align: center;
+  }
+  table {
+    margin: 0 auto;
+    border-collapse: collapse;
+  }
+  #display {
+    width: 258px;
+    height: 35px;
+    font-size: 1.3em;
+    text-align: right;
+    margin-bottom: 10px;
+  }
+  input[type="button"] {
+    width: 60px;
+    height: 50px;
+    font-size: 1.1em;
+  }
+</style>
+<script>
+  window.onload = function() {
+    let display = document.getElementById("display");
+    let calculator = document.getElementById("calculator");
+
+    calculator.onclick = function(e) {
+      let target = e.target;
+      if (target.tagName !== "INPUT" || target.type !== "button") {
+        return;
+      }
+
+      let value = target.value;
+      let current = display.value;
+
+      switch (value) {
+        case "=":
+          try {
+            display.value = eval(current);
+          } catch (err) {
+            display.value = "Error";
+          }
+          break;
+        case "C":
+        case "CE":
+          display.value = "0";
+          break;
+        case "BACK":
+          if (current.length > 1) {
+            display.value = current.slice(0, -1);
+          } else {
+            display.value = "0";
+          }
+          break;
+        case "NONE":
+          break;
+        default:
+          if (current === "0" || current === "Error") {
+            if (value === "." || value === "+" || value === "-" || value === "*" || value === "/") {
+              display.value += value;
+            } else {
+              display.value = value;
+            }
+          } else {
+            display.value += value;
+          }
+          break;
+      }
+    };
+  };
+</script>
+</head>
+<body>
+
+  <h3>계산기 만들기</h3>
+  <input type="text" id="display" value="0" readonly>
+  
+  <table id="calculator" border="1">
+    <tr>
+      <td><input type="button" value="BACK"></td>
+      <td><input type="button" value="CE"></td>
+      <td><input type="button" value="C"></td>
+      <td><input type="button" value="="></td>
+    </tr>
+    <tr>
+      <td><input type="button" value="7"></td>
+      <td><input type="button" value="8"></td>
+      <td><input type="button" value="9"></td>
+      <td><input type="button" value="/"></td>
+    </tr>
+    <tr>
+      <td><input type="button" value="4"></td>
+      <td><input type="button" value="5"></td>
+      <td><input type="button" value="6"></td>
+      <td><input type="button" value="*"></td>
+    </tr>
+    <tr>
+      <td><input type="button" value="1"></td>
+      <td><input type="button" value="2"></td>
+      <td><input type="button" value="3"></td>
+      <td><input type="button" value="-"></td>
+    </tr>
+    <tr>
+      <td><input type="button" value="0"></td>
+      <td><input type="button" value="."></td>
+      <td><input type="button" value="NONE"></td>
+      <td><input type="button" value="+"></td>
+    </tr>
+  </table>
+
+</body>
+</html>

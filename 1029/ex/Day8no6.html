@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>innerHTML 연습</title>
+<style>
+
+  #targetP {
+    cursor: pointer;
+    font-size: 1.2em; 
+  }
+  
+ 
+  #targetP strong {
+    color: blue;
+  }
+</style>
+</head>
+<body>
+
+  <h3>innerHTML 프로퍼티 연습</h3>
+  <hr>
+  
+  <p id="targetP">
+    푸른 바다 <strong>제주도</strong>로 가요!!
+  </p>
+
+<script>
+ 
+  window.onload = function() {
+    
+  
+    let p = document.getElementById("targetP");
+
+ 
+    p.onclick = function() {
+      
+      let newHtml = prompt("어떤 내용이든 어디로 여행을 갈까요?");
+
+      if (newHtml !== null) {
+        
+       
+        this.innerHTML = newHtml;
+      }
+    };
+  };
+</script>
+
+</body>
+</html>

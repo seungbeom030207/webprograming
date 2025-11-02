@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>transform:scale()</title>
+<style>
+  
+  img {
+    cursor: pointer;
+    
+  
+    transition: transform 0.3s ease;
+  }
+</style>
+</head>
+<body>
+
+  <h3>클릭하면 2,3,4배로 옆으로 늘어납니다.</h3>
+  <hr>
+  <img id="scaleImg" src="spongebob.png" alt="스폰지밥">
+
+<script>
+  window.onload = function() {
+    let img = document.getElementById("scaleImg");
+    
+    
+    let currentScale = 1; 
+
+    img.onclick = function() {
+      
+      currentScale++; 
+
+   
+      if (currentScale > 4) {
+        currentScale = 1;
+      }
+      
+     
+      this.style.transform = "scale(" + currentScale + ", 1)";
+    };
+  };
+</script>
+
+</body>
+</html>
