@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>갬블링 게임</title>
+<style>
+  body {
+    text-align: center;
+  }
+  
+  .number-slot {
+    font-size: 5em;
+    font-weight: bold;
+    border: 3px solid gray;
+    padding: 10px 30px;
+    margin: 15px;
+    min-width: 100px;
+    display: inline-block;
+    cursor: pointer;
+    user-select: none; 
+  }
+  
+  #status.restart {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+  <h2>갬블링 게임</h2>
+  
+  <h3 id="status">각 숫자를 클릭하면 0에서 2사이의 난수로 바뀝니다. 모두 같은 수가 나오면 승리합니다.</h3>
+  
+  <div id="game-board">
+    <span id="num1" class="number-slot">0</span>
+    <span id="num2" class="number-slot">0</span>
+    <span id="num3" class="number-slot">0</span>
+  </div>
+
+<script>
+  window.onload = function() {
+    
+    let num1 = document.getElementById("num1");
+    let num2 = document.getElementById("num2");
+    let num3 = document.getElementById("num3");
+    let status = document.getElementById("status");
+    
+    let numbers = [num1, num2, num3];
+    
+    let clicked = [false, false, false]; 
+    let gameOver = false; 
+
+    function resetGame() {
+      numbers.forEach(function(num) {
+        num.innerHTML = "0";
+      });
+      clicked = [false, false, false];
+      gameOver = false;
+      status.innerHTML = "각 숫자를 클릭하면 0에서 2사이의 난수로 바뀝니다. 모두 같은 수가 나오면 승리합니다.";
+      status.classList.remove("restart"); 
+    }
+    
+    function checkGame() {
+      let allClicked = clicked.every(c => c === true);
+
+      if (allClicked) {
+        gameOver = true; 
+        
+        let val1 = num1.innerHTML;
+        let val2 = num2.innerHTML;
+        let val3 = num3.innerHTML;
+
+        if (val1 === val2 && val2 === val3) {
+          status.innerHTML = "Success(click here to do again)";
+        } else {
+          status.innerHTML = "fail(click here to do again)";
+        }
+        
+        status.classList.add("restart");
+      }
+    }
+    
+    function onNumberClick(index) {
+      if (gameOver || clicked[index]) {
+        return;
+      }
+
+      let randomNum = Math.floor(Math.random() * 3);
+      
+      numbers[index].innerHTML = randomNum;
+      
+      clicked[index] = true;
+      
+      checkGame();
+    }
+    
+    num1.onclick = function() { onNumberClick(0); };
+    num2.onclick = function() { onNumberClick(1); };
+    num3.onclick = function() { onNumberClick(2); };
+    
+    status.onclick = function() {
+      if (gameOver) {
+        resetGame();
+      }
+    };
+    
+    resetGame(); 
+  };
+</script>
+
+</body>
+</html>
