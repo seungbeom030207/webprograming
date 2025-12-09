@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김승범 | 포트폴리오</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts (Korean Optimized) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Black Han Sans"', 'sans-serif'], // 제목용
+                        body: ['"Noto Sans KR"', 'sans-serif'],   // 본문용
+                    },
+                    colors: {
+                        bg: '#f5f5f0',   // 따뜻한 미색 배경
+                        paper: '#ffffff',
+                        accent: '#6A8D39', // Matcha Green (말차색)
+                        text: '#1a1a1a',  
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #e5e5e5 1px, transparent 1px), linear-gradient(to bottom, #e5e5e5 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Global Styles */
+        body {
+            background-color: #f5f5f0;
+            color: #1a1a1a;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-title {
+            font-family: 'Black Han Sans', sans-serif;
+            letter-spacing: -0.05em;
+        }
+
+        /* Texture */
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.4;
+            mix-blend-mode: multiply;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+        }
+
+        /* Card Style */
+        .grit-card {
+            background-color: #ffffff;
+            border: 2px solid #000;
+            position: relative;
+            transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 4px 4px 0px 0px #000000;
+            overflow: hidden;
+        }
+        .grit-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0px 0px #6A8D39; /* 말차색 그림자 */
+            z-index: 10;
+            border-color: #6A8D39;
+        }
+
+        /* Hero Profile Image Style */
+        .hero-card {
+            background-color: #e5e5e5;
+            border-bottom: 4px solid #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Typography Helper */
+        .text-outline { -webkit-text-stroke: 1px #000; color: transparent; }
+        .group:hover .text-outline { color: #6A8D39; -webkit-text-stroke: 0px; }
+
+        /* Animation */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee { animation: marquee 25s linear infinite; }
+
+        /* Image Helpers */
+        img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        img:before { 
+            content: '이미지 없음'; display: flex; align-items: center; justify-content: center;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #f0f0f0; color: red; border: 1px dashed red; font-family: 'Noto Sans KR';
+        }
+
+        /* Link Hover Effect */
+        .link-hover:hover {
+            color: #6A8D39;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+        /* PDF List Item Style */
+        .project-item {
+            border-bottom: 1px solid #e5e5e5;
+            padding: 10px 0;
+            transition: all 0.2s;
+        }
+        .project-item:hover {
+            padding-left: 10px;
+            color: #6A8D39;
+            border-color: #6A8D39;
+        }
+        .project-item:last-child { border-bottom: none; }
+        
+        /* Netflix Link Hover Effect */
+        .netflix-link:hover {
+            color: #E50914; /* Netflix Red */
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="selection:bg-accent selection:text-white">
+
+    <div class="noise-overlay"></div>
+    <div class="fixed inset-0 bg-grid-pattern bg-[length:40px_40px] pointer-events-none z-0"></div>
+
+    <main class="relative z-10 max-w-[1400px] mx-auto min-h-screen pb-24">
+        
+        <!-- 1. Header Area -->
+        <header class="p-4 md:p-8 border-b-4 border-black bg-[#f5f5f0]">
+            <div class="flex flex-col md:flex-row justify-between items-end gap-4">
+                <div>
+                    <div class="inline-block bg-accent text-white font-bold text-xs px-2 py-1 mb-2 tracking-widest">[ 포트폴리오 최종본 ]</div>
+                    <h1 class="text-7xl md:text-9xl font-title leading-[0.9] text-black">
+                        김 승 범<br><span class="text-accent text-5xl md:text-7xl">KIM SEUNG BEOM</span>
+                    </h1>
+                </div>
+                <div class="text-right hidden md:block font-bold">
+                    <p class="text-sm text-gray-500">부산광역시, 대한민국</p>
+                    <p class="text-sm text-gray-500">개발자 & 아티스트</p>
+                    <div class="mt-4 border-2 border-black px-4 py-2 inline-block bg-white hover:bg-accent hover:text-white transition-colors cursor-pointer">
+                        <span class="font-bold text-sm">아래로 스크롤 ↓</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. HUGE PROFILE HERO SECTION -->
+        <section class="hero-card w-full min-h-[85vh] group relative">
+            <div class="absolute inset-0">
+                <!-- object-top: 머리부터 보여주기 -->
+                <img src="./profile_main.jpg" alt="전신 프로필 사진" class="w-full h-full object-cover object-top" 
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-2xl text-red-500 font-bold\'>profile_main.jpg 이미지를 넣어주세요</div>'">
+            </div>
+            
+            <!-- Information Overlay -->
+            <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 via-black/50 to-transparent pt-32 pb-8 px-4 md:px-8 text-white">
+                <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-end">
+                    <div>
+                        <h2 class="text-6xl md:text-8xl font-title mb-2 text-white drop-shadow-lg leading-none">
+                            경성대학교<br>소프트웨어학과
+                        </h2>
+                        <p class="text-accent text-xl md:text-2xl font-bold bg-white/10 backdrop-blur-sm inline-block px-2">2학년 재학 중</p>
+                    </div>
+                    <div class="text-right mt-4 md:mt-0 opacity-90 font-bold">
+                        <p class="text-base md:text-lg border-l-4 border-accent pl-4 leading-relaxed">
+                            이름: 김승범<br>
+                            생년월일: 2003. 02. 07<br>
+                            출신: 제주도 🍊
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Marquee Strip (Running Text) -->
+        <div class="w-full bg-accent text-white overflow-hidden py-3 border-b-4 border-black shadow-lg relative z-20">
+            <div class="whitespace-nowrap flex animate-marquee font-title text-2xl md:text-3xl tracking-wide">
+                <span>/// 자바 개발자 /// UI 디자이너 /// 연극 연출가 /// 서브웨이 아티스트 /// 기타리스트 /// 애니메이션 덕후 /// 창의적인 코더 /// 열정적인 리더 ///</span>
+            </div>
+        </div>
+
+        <!-- 4. The Grid (Other Info) -->
+        <div class="p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[minmax(250px,auto)]">
+
+            <!-- GitHub (Wide) -->
+            <a href="https://github.com/seungbeom030207/webprograming" target="_blank" class="grit-card col-span-1 md:col-span-2 row-span-1 p-8 flex flex-col justify-center hover:bg-gray-50 group cursor-pointer">
+                <div class="flex justify-between items-start mb-6">
+                    <i class="fa-brands fa-github text-6xl text-black group-hover:text-accent transition-colors"></i>
+                    <i class="fa-solid fa-arrow-right text-3xl -rotate-45 group-hover:rotate-0 text-black transition-transform"></i>
+                </div>
+                <div>
+                    <h3 class="text-4xl font-title text-black">깃허브 저장소</h3>
+                    <div class="text-sm mt-4 bg-gray-100 p-3 border border-gray-300 inline-block font-bold">
+                        <span class="text-accent">클릭하여</span> 소스코드 확인하기
+                    </div>
+                </div>
+            </a>
+
+            <!-- Subway (Wide) -->
+            <div class="grit-card col-span-1 md:col-span-2 row-span-1 p-0 relative overflow-hidden group bg-white">
+                <div class="absolute right-[-20px] top-[-20px] p-4 opacity-10">
+                    <i class="fa-solid fa-burger text-9xl text-black transform rotate-12"></i>
+                </div>
+                <div class="relative z-10 p-8 flex flex-col justify-center h-full border-l-[10px] border-accent">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="bg-[#009245] text-white text-xs px-2 py-1 font-bold">아르바이트 경력</span>
+                    </div>
+                    <h3 class="text-4xl font-title text-black group-hover:text-accent transition-colors">서브웨이</h3>
+                    <p class="text-base text-gray-700 mt-2 font-bold max-w-lg">
+                        <span class="text-accent">2025년 ~ 현재</span><br>
+                        빠른 손놀림과 완벽한 레시피 암기.<br>
+                        복잡한 주문 처리 및 고객 응대 마스터.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Skills (Tall) -->
+            <div class="grit-card col-span-1 row-span-2 p-6 flex flex-col bg-white">
+                <div class="border-b-2 border-black pb-3 mb-6 flex justify-between items-center">
+                    <h3 class="text-2xl font-title text-black"><i class="fa-solid fa-microchip text-accent mr-2"></i>기술 스택</h3>
+                </div>
+                <div class="flex-1 flex flex-col justify-center space-y-8 text-sm text-black font-bold">
+                    <div class="group">
+                        <div class="flex justify-between mb-1"><span>JAVA (SWING)</span><span class="text-accent">40%</span></div>
+                        <div class="w-full h-4 border border-black p-[1px]"><div class="h-full bg-black group-hover:bg-accent w-[40%] transition-colors"></div></div>
+                    </div>
+                    <div class="group">
+                        <div class="flex justify-between mb-1"><span>PYTHON</span><span class="text-accent">40%</span></div>
+                        <div class="w-full h-4 border border-black p-[1px]"><div class="h-full bg-black group-hover:bg-accent w-[40%] transition-colors"></div></div>
+                    </div>
+                    <div class="group">
+                        <div class="flex justify-between mb-1"><span>HTML/CSS</span><span class="text-gray-400">30%</span></div>
+                        <div class="w-full h-4 border border-black p-[1px]"><div class="h-full bg-gray-300 group-hover:bg-accent w-[30%] transition-colors"></div></div>
+                    </div>
+                     <div class="group">
+                        <div class="flex justify-between mb-1"><span>JAVASCRIPT</span><span class="text-gray-400">20%</span></div>
+                        <div class="w-full h-4 border border-black p-[1px]"><div class="h-full bg-gray-300 group-hover:bg-accent w-[20%] transition-colors"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ⭐️ Web Programming Team Projects (Wide) ⭐️ -->
+            <div class="grit-card col-span-1 md:col-span-2 row-span-1 p-8 bg-white group flex flex-col justify-between">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-3xl font-title text-black">웹프로그래밍 팀프로젝트</h3>
+                    <i class="fa-solid fa-folder-open text-3xl text-gray-300 group-hover:text-accent transition-colors"></i>
+                </div>
+                <div class="flex-1">
+                    <p class="text-xs text-gray-500 font-bold mb-3">프로젝트명을 클릭하여 PDF 포트폴리오를 확인하세요.</p>
+                    <ul class="text-sm font-bold text-black space-y-1">
+                        <li class="project-item">
+                            <a href="./Sprint Match.pdf" target="_blank" class="flex justify-between items-center w-full">
+                                <span>01. Sprint Match (스프린트 매치)</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-gray-400 text-xs"></i>
+                            </a>
+                        </li>
+                        <li class="project-item">
+                            <a href="./냉장고 구조대.pdf" target="_blank" class="flex justify-between items-center w-full">
+                                <span>02. 냉장고 구조대 (Fridge Rescue)</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-gray-400 text-xs"></i>
+                            </a>
+                        </li>
+                        <li class="project-item">
+                            <a href="./Fit-Kids.pdf" target="_blank" class="flex justify-between items-center w-full">
+                                <span>03. Fit-Kids (핏-키즈)</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-gray-400 text-xs"></i>
+                            </a>
+                        </li>
+                        <li class="project-item">
+                            <a href="./페플.pdf" target="_blank" class="flex justify-between items-center w-full">
+                                <span>04. 페플 (Festival Planner)</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-gray-400 text-xs"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Drama (Tall) -->
+            <div class="grit-card col-span-1 row-span-2 bg-white group flex flex-col">
+                <div class="p-6 h-full flex flex-col relative">
+                    <div class="border-b-2 border-black pb-3 mb-6">
+                        <h3 class="text-2xl font-title text-black">연극 동아리</h3>
+                    </div>
+                    <ul class="space-y-6 text-sm text-black flex-1 font-bold">
+                        <li class="pl-4 border-l-4 border-gray-300 group-hover:border-accent transition-colors py-1">
+                            <strong class="block text-accent text-lg font-title">연출</strong>
+                            <span class="text-xs text-gray-500">연극 연출 1회 총괄 기획</span>
+                        </li>
+                        <li class="pl-4 border-l-4 border-gray-300 group-hover:border-accent transition-colors py-1">
+                            <strong class="block text-black text-lg font-title">배우</strong>
+                            <span class="text-xs text-gray-500">배우 2회 (주연 및 조연)</span>
+                        </li>
+                        <li class="pl-4 border-l-4 border-gray-300 group-hover:border-accent transition-colors py-1">
+                            <strong class="block text-black text-lg font-title">복지부장</strong>
+                            <span class="text-xs text-gray-500">동아리 조직 관리 및 리더십</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4 text-right">
+                        <i class="fa-solid fa-masks-theater text-6xl text-gray-200 group-hover:text-accent transition-colors"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Anime (Box with Netflix Links) -->
+            <div class="grit-card col-span-1 row-span-1 p-6 bg-black text-white group flex flex-col justify-between hover:bg-accent hover:text-black transition-colors">
+                <div class="flex justify-between items-start">
+                    <h3 class="text-3xl font-title">애니메이션</h3>
+                    <i class="fa-solid fa-tv text-3xl text-gray-500 group-hover:text-black"></i>
+                </div>
+                <div class="text-sm mt-4 font-bold">
+                    <p class="text-gray-400 group-hover:text-black border-b border-gray-700 pb-1 mb-2">최애 TOP 3 (클릭)</p>
+                    <ul class="space-y-2 list-decimal list-inside">
+                        <li><a href="https://www.netflix.com/search?q=도쿄리벤저스" target="_blank" class="netflix-link">도쿄 리벤저스</a></li>
+                        <li><a href="https://www.netflix.com/search?q=은혼" target="_blank" class="netflix-link">은혼</a></li>
+                        <li><a href="https://www.netflix.com/search?q=주술회전" target="_blank" class="netflix-link">주술회전</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Guitar (Box) - Icon Only -->
+            <div class="grit-card col-span-1 row-span-1 p-6 bg-white group flex flex-col justify-center items-center text-center relative overflow-hidden">
+                <i class="fa-solid fa-guitar text-7xl text-gray-200 group-hover:text-accent group-hover:scale-110 transition-all duration-300"></i>
+                <h3 class="mt-4 text-2xl font-title z-10 text-black">기타 연주</h3>
+                <p class="text-sm text-gray-500 font-bold mt-1">Acoustic & Electric</p>
+            </div>
+
+            <!-- Cooking (Box with Photo) -->
+            <div class="grit-card col-span-1 row-span-1 group relative overflow-hidden bg-gray-100">
+                 <img src="./cooking1.jpg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0" alt="파스타" onerror="this.style.display='none'">
+                 <img src="./cooking2.jpg" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" alt="요리" onerror="this.style.display='none'">
+                 <div class="absolute top-0 left-0 p-3 z-20">
+                     <span class="bg-white border border-black px-2 py-1 text-xs font-bold">취미: 요리</span>
+                 </div>
+            </div>
+
+             <!-- Travel (Box with Photo) -->
+             <div class="grit-card col-span-1 row-span-1 group relative overflow-hidden bg-gray-100">
+                <img src="./travel1.jpg" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0" alt="도쿄타워" onerror="this.style.display='none'">
+                <img src="./travel2.jpg" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" alt="전철" onerror="this.style.display='none'">
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                    <h3 class="text-5xl font-title text-transparent stroke-text text-outline group-hover:text-white transition-colors">여행</h3>
+                </div>
+           </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-12 p-8 border-t-4 border-black flex flex-col md:flex-row justify-between items-start font-bold bg-[#f5f5f0]">
+            <div>
+                <p>&copy; 2025 김승범 (KIM SEUNG-BEOM)</p>
+                <p>열정으로 디자인함.</p>
+            </div>
+            <div class="mt-4 md:mt-0 text-right">
+                <p>HTML5 / TAILWIND CSS</p>
+                <p class="text-accent">템플릿 없음. 순수 코드.</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        // Smooth reveal animation
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = document.querySelectorAll('.grit-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 80 * index);
+            });
+        });
+    </script>
+</body>
+</html>
